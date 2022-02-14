@@ -3,19 +3,20 @@
   hosts: prod
   vars:
     project_path: /tmp/boxfuse
-    artifact_path: "{{ project_path }}/target/*.war"
+    artifact_path: "{{ project_path }}/target/hello-1.0.war"
   become: true
 
   tasks:
   - name: Ensure tomcat is installed
-    apt: 
+    apt:
       name: tomcat9
       state: present
   - name: Deploy artifact
-    copy:
+    synchronize:
       src: "{{ artifact_path }}"
-      dest: "/var/lib/tomcat9/webapps/"
-      delegate_to: build
+      dest: "/var/lib/tomcat9/webapps"
+      private_key: "/home/theo_vi/.ssh/id_rsa"
+    delegate_to: 178.154.207.24
   - name: Restart tomcat
     service:
       name: tomcat9
