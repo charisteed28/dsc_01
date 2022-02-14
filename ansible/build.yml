@@ -1,0 +1,23 @@
+---
+- name: Building project
+  hosts: build
+  vars:
+    project_path: /tmp/boxfuse
+  become: yes
+
+  tasks:
+  - name: Ensure maven is installed
+    apt:
+      name: maven
+      state: present
+  - name: Ensure git is installed
+    apt:
+      name: git
+      state: present
+  - name: Checkout remote package Boxfuse
+    git:
+      repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+      dest: "{{ prohect_path }}"
+  - name: Build project
+    shell: mvn packege chdir="{{ project_path }}"
+---
