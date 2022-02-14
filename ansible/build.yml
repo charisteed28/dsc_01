@@ -3,7 +3,7 @@
   hosts: build
   vars:
     project_path: /tmp/boxfuse
-  become: yes
+  become: true
 
   tasks:
   - name: Ensure maven is installed
@@ -17,7 +17,6 @@
   - name: Checkout remote package Boxfuse
     git:
       repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-      dest: "{{ prohect_path }}"
+      dest: "{{ project_path }}"
   - name: Build project
-    shell: mvn packege chdir="{{ project_path }}"
----
+    shell: mvn clean package chdir="{{ project_path }}"
