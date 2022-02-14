@@ -1,0 +1,22 @@
+---
+- name: Deploy and Run project
+  hosts: prod
+  vars:
+    project_path: /tmp/boxfuse
+    artifact_path: "{{ project_path }}/target/*.war"
+  become: true
+
+  tasks:
+  - name: Ensure tomcat is installed
+    apt: 
+      name: tomcat9
+      state: present
+  - name: Deploy artifact
+    copy:
+      src: "{{ artifact_path }}"
+      dest: "/var/lib/tomcat9/webapps/"
+      delegate_to: build
+  - name: Restart tomcat
+    service:
+      name: tomcat9
+      state: restarted
