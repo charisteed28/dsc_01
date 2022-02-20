@@ -10,8 +10,6 @@
     src: "{{ artifact_src_path }}"
     dest: "{{ artifact_dest_path }}"
     private_key: "/home/theo_vi/.ssh/id_rsa"
-    rsync_opts:
-      - "--chown:tomcat:tomcat"
   delegate_to: "{{ build_ip }}"
   notify:
   - name: restart tomcat9
