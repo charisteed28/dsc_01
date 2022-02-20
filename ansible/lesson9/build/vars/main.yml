@@ -1,2 +1,5 @@
 ---
 # vars file for build
+project_path: /tmp/boxfuse
+artifact_path: {{ project_path }}/target/hello-1.0.war
+artifact_dest_path: /var/lib/tomcat9/webapps

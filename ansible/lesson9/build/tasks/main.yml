@@ -1,2 +1,20 @@
 ---
 # tasks file for build
+#install packages
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - maven
+    - git
+
+#get boxfuse
+- name: Checkout remote package Boxfuse
+  git:
+    repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+    dest: "{{ project_path }}"
+
+#build boxfuse
+- name: Build project
+    shell: mvn clean package chdir="{{ project_path }}"
