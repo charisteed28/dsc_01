@@ -38,6 +38,8 @@
       src: "{{ artifact_path }}"
       dest: "/var/lib/tomcat9/webapps"
       private_key: "/home/theo_vi/.ssh/id_rsa"
+      rsync_opts:
+        - "--chown=tomcat:tomcat"
     delegate_to: 178.154.207.24
   - name: Restart tomcat
     service:
