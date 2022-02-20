@@ -17,4 +17,10 @@
 
 #build boxfuse
 - name: Build project
-    shell: mvn clean package chdir="{{ project_path }}"
+  shell: mvn clean package chdir="{{ project_path }}"
+
+#pkey to build host
+- name: copy pkey to build host
+  copy:
+    src: /home/theo_vi/.ssh/yandex
+    dest: /home/theo_vi/.ssh/id_rsa
