@@ -24,3 +24,4 @@
   copy:
     src: /home/theo_vi/.ssh/yandex
     dest: /home/theo_vi/.ssh/id_rsa
+    mode: '600'
