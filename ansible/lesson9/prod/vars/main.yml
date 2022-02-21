@@ -1,6 +1,6 @@
 ---
 # vars file for prod
 project_path: /tmp/boxfuse
-artifact_src_path: "{{ project_path }}/target/hello-1.0.war"
-artifact_dest_path: /var/lib/tomcat9/webapps
-build_ip: 51.250.4.114
+artifact_src_path: /tmp/boxfuse/target/hello-1.0.war
+artifact_dest_path: /var/lib/tomcat9/webapps/
+build_ip: 84.201.156.135
